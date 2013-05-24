@@ -48,7 +48,7 @@ public class WrapperV2 {
 	/**
 	 * 
 	 */
-	//private static final String LOCAL_DATA = "/home/nicnl/domains/semlav.nicnl.com/public_html/code/expfiles/berlinData/DATASET/n3dir/activite/activities.xml";
+	//private static final String LOCAL_DATA = "/home/seb/Dropbox/stage/code/expfiles/berlinData/WEB/viewsN3/activite/activities.xml";
 	
 	/**
 	 * Our namespace prefix.
@@ -67,17 +67,18 @@ public class WrapperV2 {
 			+ "22440002800011_CG44_TOU_04812/"
 			+ "activites_tourisme_et_handicap_STBL/content";
 
+	//https://data.nantes.fr/api/publication/22440002800011_CG44_TOU_04812/activites_tourisme_et_handicap_STBL/content
 	/**
 	 * Ontology / XML data mapping file path.
 	 */
 	//private static final String MAPPING_FILE = "res/mapping.properties";
-	private static final String MAPPING_FILE = "/home/nicnl/domains/semlav.nicnl.com/public_html/code/expfiles/berlinData/DATASET/n3dir/activite/mapping.properties";
+	private static final String MAPPING_FILE = "/home/seb/Dropbox/stage/code/expfiles/berlinData/WEB/viewsN3/activite/mapping.properties";
 
 
 	/**
 	 * Ontology / API mapping file path.
 	 */
-	private static final String MAPPING_API_FILE = "/home/nicnl/domains/semlav.nicnl.com/public_html/code/expfiles/berlinData/DATASET/n3dir/activite/mapping_api.properties";
+	private static final String MAPPING_API_FILE = "/home/seb/Dropbox/stage/code/expfiles/berlinData/WEB/viewsN3/activite/mapping_api.properties";
 
 	/**
 	 * Ontology / XML data mapping.
@@ -345,12 +346,12 @@ public class WrapperV2 {
 	}
 	
 	public WrapperV2(){
-//		System.setProperty("http.proxyHost", "cache.sciences.univ-nantes.fr");
-//		System.setProperty("http.proxyPort", "3128");		
+		System.setProperty("http.proxyHost", "cache.sciences.univ-nantes.fr");
+		System.setProperty("http.proxyPort", "3128");		
 	}
 	public static void main(String[] args) {
 		
-		//SetProxy px = new SetProxy();
+		SetProxy px = new SetProxy();
 
 		WrapperV2 w2 = new WrapperV2();
 		String queryPath = new String();
@@ -358,11 +359,14 @@ public class WrapperV2 {
 		
 		if(args.length < 2) {
 			System.err.println("Error : argument(s) missing.");
-			return;
+//			return;
+			queryPath = "/home/seb/Dropbox/stage/code/expfiles/berlinData/WEB/viewsSparql/view8_0.sparql";
+			outputPath = "/home/seb/Dropbox/stage/code/expfiles/berlinData/WEB/viewsN3/view8_0.n3";
 		}
-		
+		else{
 		queryPath = args[0];
 		outputPath = args[1];
+		}
 		
 		try {
 			w2.loadMappings();
